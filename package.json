@@ -1,0 +1,17 @@
+{
+  "name": "rita_hr_backend",
+  "version": "1.0.0",
+  "description": "This is a backend project built using Node and Express Js and possibly MongoDb",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0"
+  }
+}
