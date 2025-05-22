@@ -44,3 +44,22 @@ exports.deleteEmployee = (req, res) => {
   employees = employees.filter((e) => e.id != req.params.id);
   res.json({ message: "Employee deleted successfully" });
 };
+/// Louisa_Search Employees by Name Keyword
+exports.searchEmployeesByName = (req, res) => {
+  const keyword = req.query.keyword?.toLowerCase() || "";
+  const filtered = employees.filter((e) =>
+    e.name.toLowerCase().includes(keyword)
+  );
+  res.json(filtered);
+};
+/// Louisa_Deleting the employees in a specific department
+exports.deleteEmployeesByDepartment = (req, res) => {
+  const dept = req.params.department;
+  if (!dept) return res.status(400).json({ message: "Department not foumd!" });
+  const initialCount = employees.length;
+  employees = employees.filter((e) => e.department !== dept);
+  const deletedCount = initialCount - employees.length;
+  res.json({
+    message: `Deleted ${deletedCount}employees from  ${dept} department`,
+  });
+};
