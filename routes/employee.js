@@ -6,6 +6,7 @@ const {
   updateEmployee,
   deleteEmployee,
   searchEmployeeByLevel,
+  searchEmployeeBySalary,
 } = require("../controllers/employee");
 const router = express.Router();
 
@@ -15,5 +16,6 @@ router.get("/:id", getEmployee);
 router.put("/:id", updateEmployee);
 router.delete("/:id", deleteEmployee);
 router.get("/filter/search_employee_by_level", searchEmployeeByLevel);
+router.get("/filter/search_employee_by_salary", searchEmployeeBySalary);
 
 module.exports = router;

@@ -55,3 +55,13 @@ exports.searchEmployeeByLevel = (req, res) => {
   res.json({message_one:`Total employee found between level 1 and 10 is ${employeeBtwLevelOneAndTen.length}`,
     message_two:`Total employee found in level 11 upwards is ${employeeFromElevenUpwards.length}`});
 };
+
+exports.searchEmployeeBySalary = (req, res) => {
+  if (!employees) {
+    return res.status(404).json({ message: "No employee found" });
+  }
+  const employee = employees.filter((e) => e.department == "finance" && e.salary >= 1500 && e.name)
+  .map((e) => e.name);
+  
+  res.json({message:"Names of employees in department of finance with salary of atleast 1,500 are:" , employee});
+};
