@@ -45,11 +45,13 @@ exports.deleteEmployee = (req, res) => {
   res.json({ message: "Employee deleted successfully" });
 };
 
-exports.totalEmployeeBtwLevelOneAndTen = (req, res) => {
-  const employee = employees.filter((e) => e.level >= 1 && e.level <= 10);
-  if (!employee) {
-    return res.status(404).json({ message: "No employee found between the level 1 and 10" });
+exports.searchEmployeeByLevel = (req, res) => {
+  const employeeBtwLevelOneAndTen = employees.filter((e) => e.level >= 1 && e.level <= 10);
+  const employeeFromElevenUpwards = employees.filter((e) => e.level >= 11);
+  if (!employees) {
+    return res.status(404).json({ message: "No employee found" });
   }
 
-  res.json({message:`Total employee found between level one and ten is ${employee.length}`});
+  res.json({message_one:`Total employee found between level 1 and 10 is ${employeeBtwLevelOneAndTen.length}`,
+    message_two:`Total employee found in level 11 upwards is ${employeeFromElevenUpwards.length}`});
 };
