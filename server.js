@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const employee_routes = require("./routes/employee.js");
+const connect = require("./model/connection.js");
 
 const app = express();
 const PORT = 3300;
@@ -20,6 +21,7 @@ app.get("/", (req, res) => {
 app.use("/api/employees", employee_routes);
 
 //  Start server
+connect();
 app.listen(PORT, () => {
   console.log(`Server is running perfectly on port ${PORT}`);
 });
