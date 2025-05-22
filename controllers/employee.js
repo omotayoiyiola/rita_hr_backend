@@ -44,3 +44,15 @@ exports.deleteEmployee = (req, res) => {
   employees = employees.filter((e) => e.id != req.params.id);
   res.json({ message: "Employee deleted successfully" });
 };
+
+//Israel- Get employees whose names start with "A"
+exports.getEmployeesStartingWithA = (req, res) => {
+  const result = employees.filter(emp => emp.name.startsWith("A"));
+  res.json(result);
+};
+
+//Israel- Get employees with salary >= 2000
+exports.getEmployeesWithHighSalary = (req, res) => {
+  const result = employees.filter(emp => emp.salary >= 2000);
+  res.json(result);
+};
