@@ -97,3 +97,32 @@ exports.getEmployeesWithHighSalary = (req, res) => {
   const result = employees.filter((emp) => emp.salary >= 2000);
   res.json(result);
 };
+///Louise_Search employees by name keyword(case-insensitive)
+
+exports.searchEmployeesByName = async (req, res) => {
+  try {
+    const keyword = req.query.keyword;
+    const result = await Employee.find({
+      name: { $regex: keyword, $options: "i" },
+    });
+    res.status(200).json(result);
+  } catch (error) {
+    console.log("Error searching employee by name:", error);
+    res.status(500).json({ error: error.message });
+  }
+};
+///Louise_Deleteall employees in a specific department
+
+exports.deleteEmployeesByDepartment = async (req, res) => {
+  try {
+    const department = req.params.department;
+    const result = await Employee.deleteMany({ department });
+    res.status(200).json({
+      message: `All employees in ${department} department deleted`,
+      deletedCount: result.deletedCount,
+    });
+  } catch (error) {
+    console.log("Error deleting employees by department:", error);
+    res.status(500).json({ error: error.message });
+  }
+};
